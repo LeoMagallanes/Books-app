@@ -20,19 +20,19 @@ class MyApp extends StatelessWidget {
           crossAxisCount: 2, // 2 columnas
           children: <Widget>[
             CategoryTile(
-              title: 'Novel',
+              title: 'novel',
               imagePath: 'Images/novel.png', // Reemplaza con tu imagen
             ),
             CategoryTile(
-              title: 'Fiction\'s',
+              title: 'fiction',
               imagePath: 'Images/fiction.png', // Reemplaza con tu imagen
             ),
             CategoryTile(
-              title: 'Childrens Books',
+              title: 'childrens_books',
               imagePath: 'Images/children.png', // Reemplaza con tu imagen
             ),
             CategoryTile(
-              title: 'Educational',
+              title: 'educational',
               imagePath: 'Images/educational.png', // Reemplaza con tu imagen
             ),
           ],
