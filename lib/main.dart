@@ -1,51 +1,73 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'CategoryDetailsPage.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key); // Añadido const y key
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Broker App',
+      title: 'Books App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Books App'), // Text es const por defecto
+          title: const Text('Books App'),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
-                child: Text('Novel'), // Text es const por defecto
-                onPressed: () {
-                  // Acción para Divisas
-                },
-              ),
-              ElevatedButton(
-                child: Text('Fiction\'s'), // Text es const por defecto
-                onPressed: () {
-                  // Acción para ETF's
-                },
-              ),
-              ElevatedButton(
-                child: Text('Childrens Books'), // Text es const por defecto
-                onPressed: () {
-                  // Acción para Empresas de USA
-                },
-              ),
-              ElevatedButton(
-                child: Text('Educational'), // Text es const por defecto
-                onPressed: () {
-                  // Acción para Empresas Internacionales
-                },
-              ),
-            ],
-          ),
+        body: GridView.count(
+          crossAxisCount: 2, // 2 columnas
+          children: <Widget>[
+            CategoryTile(
+              title: 'Novel',
+              imagePath: 'Images/novel.png', // Reemplaza con tu imagen
+            ),
+            CategoryTile(
+              title: 'Fiction\'s',
+              imagePath: 'Images/fiction.png', // Reemplaza con tu imagen
+            ),
+            CategoryTile(
+              title: 'Childrens Books',
+              imagePath: 'Images/children.png', // Reemplaza con tu imagen
+            ),
+            CategoryTile(
+              title: 'Educational',
+              imagePath: 'Images/educational.png', // Reemplaza con tu imagen
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CategoryTile extends StatelessWidget {
+  //Cada una de las categorias a las que podemos acceder.
+  final String title;
+  final String imagePath;
+
+  const CategoryTile({Key? key, required this.title, required this.imagePath})
+      : super(key: key); //Constructor.
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      // Para detectar los clicks
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CategoryDetailsPage(category: title)),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(imagePath), // Muestra la imagen
+          ],
         ),
       ),
     );
